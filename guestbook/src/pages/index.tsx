@@ -7,18 +7,24 @@ const Home = () => {
 
   if(status === "loading") {
     return(
-      <div>Loading...</div>
+      <div
+      className="flex flex-col items-center pt-4"
+      >Loading...</div>
     )
   }
 
   return(
-    <main>
-      <h1>GuestBook</h1>
-      <div>
+    <main className="flex flex-col items-center">
+      <h1 className="text-3xl pt-4">Guestbook</h1>
+      <div className="pt-10">
         {session ? (
           <>
-          <p>Hi {session.user?.name}</p>
+          <p className="mb-4 text-center"
+          >Hi {session.user?.name}
+          </p>
           <button
+          type="button"
+          className="mx-auto block rounded-md bg-neutral-800 py-3 px-6 text-center hover:bg-neutral-700"
           onClick={() => signOut().catch(console.log)}
           >
             Logout
@@ -28,6 +34,8 @@ const Home = () => {
           (
             <div>
               <button
+              type="button"
+              className="mx-auto block rounded-md bg-neutral-800 py-3 px-6 text-center hover:bg-neutral-700"
               onClick={() => signIn("discord").catch(console.log)}
               >
                 Login
