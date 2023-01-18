@@ -1,7 +1,7 @@
 import { api } from "../utils/api";
 
 const GuestbookEntries = () => {
-    const { data: guestBookEntries, isLoading } = api.guestBook.getAll.useQuery();
+    const { data: guestbookEntries, isLoading } = api.guestBook.getAll.useQuery();
 
     if(isLoading) {
         return(
@@ -15,16 +15,16 @@ const GuestbookEntries = () => {
         <div
         className="flex flex-col gap-4"
         >
-            {guestBookEntries?.map((entry, idx) => {
+            {guestbookEntries?.map((entry, idx) => {
                 return(
-                    <div
-                    key={idx}
-                    >
-                    <p>{entry.message}</p>
-                    <span>{entry.name}</span>
+                    <div key={idx}>
+                        <p>{entry.message}</p>
+                        <h3>{entry.name}</h3>
                     </div>
-                )
+                );
             })}
         </div>
     )
 }
+
+export default GuestbookEntries
