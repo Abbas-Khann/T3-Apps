@@ -1,6 +1,7 @@
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import GuestbookEntries from "../components/GuestbookQueries";
+import CreateMessageForm from "../components/CreateMessage";
 
 const Home = () => {
 
@@ -50,6 +51,7 @@ const Home = () => {
               </button>
             </div>
           )}
+          <CreateMessageForm />
           <GuestbookEntries />
           </div>
     </main>

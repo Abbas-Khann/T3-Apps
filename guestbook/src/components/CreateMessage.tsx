@@ -5,8 +5,23 @@ import { api } from "../utils/api";
 const CreateMessageForm = () => {
     const [message, setMessage] = useState("");
     const {data: session, status} = useSession();
-
-    const postMessage = api.guestBook.postMessage.useMutation();
+    const utils = api.useContext()
+    const postMessage = api.guestBook.postMessage.useMutation({
+        onMutate: async (newEntry) => {
+            await utils.guestBook.getAll.cancel();
+            utils.guestBook.getAll.setData(undefined, (prevEntries) => {
+                if(prevEntries) {
+                    return [newEntry, ...prevEntries];
+                }
+                else {
+                    return [newEntry]
+                }
+            });
+        },
+        onSettled: async() => {
+            await utils.guestBook.getAll.invalidate()
+        }
+    });
 
     if(status !== "authenticated") return null
 
