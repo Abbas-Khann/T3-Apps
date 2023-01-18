@@ -24,3 +24,6 @@ Also added the `Next_Auth_Secret` and added some random string for authenticatio
 ## Setting up the schema.prisma
 
 Next i changed the schema.prisma file and set the provider as postgresql and uncommented the `@db.Text` from the account model for discord auth to work.
+
+Also added the types of the schema as well as the names and pushed all changes using `npx prisma db push`
+
