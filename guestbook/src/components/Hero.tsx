@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="md:flex items-center justify-around ">
         <div className=" md:w-3/5 px-4">
           <h2 className="font-extrabold text-4xl text-skin-base my-4 leading-tight lg:text-7xl tracking-tighter mb-6 
-            bg-gradient-to-r bg-clip-text text-transparent 
+            bg-gradient-to-r bg-clip-text text-transparent
             from-[#15EFFB] via-[#110CE2] to-purple-500
             animate-text">
             Leave me<br />

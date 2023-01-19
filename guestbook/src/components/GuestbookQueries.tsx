@@ -13,13 +13,23 @@ const GuestbookEntries = () => {
 
     return(
         <div
-        className="flex flex-col gap-4"
+        className="flex flex-col items-center justify-between bg-[#0B1025]"
         >
+            <h1
+            className="font-bold text-4xl text-skin-base my-4 leading-tight lg:text-7xl tracking-tighter mb-6 
+            bg-gradient-to-r bg-clip-text text-transparent 
+            from-[#15EFFB] via-[#110CE2] to-purple-500
+            animate-text"
+            >Guest Logs</h1>
             {guestbookEntries?.map((entry, idx) => {
                 return(
-                    <div key={idx}>
-                        <p>{entry.message}</p>
-                        <h3>{entry.name}</h3>
+                    <div key={idx} className="w-9/12 text-[#030514] bg-[#5191FA] flex flex-col py-4 px-7 my-2 rounded-3xl text-white">
+                        <p
+                        className="text-md sm:text-2xl"
+                        >{entry.message}</p>
+                        <h3
+                        className="text-xs sm:text-base "
+                        >{entry.name}</h3>
                     </div>
                 );
             })}
