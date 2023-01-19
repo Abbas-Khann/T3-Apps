@@ -1,4 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "../../public/logo.png";
 
 const Navbar = () => {
 
@@ -20,7 +22,8 @@ const { data: session, status } = useSession<boolean>();
   }
 
   return(
-    <nav className="absolute top-[0px] left-[0px] bg-gray-300 w-[1440px] h-[92px]">
+    <nav className="flex items-center justify-between px-5 sm:px-7 py-5 bg-[#0B1027]">
+      <Image width={170} height={50} src={logo} alt="logo" />
         {session ? (
           <>
           <p className="mb-4 text-center"
@@ -28,7 +31,7 @@ const { data: session, status } = useSession<boolean>();
           </p>
           <button
           type="button"
-          className="mx-auto block rounded-md bg-neutral-800 py-3 px-6 text-center hover:bg-neutral-700"
+          className="bg-transparent text-white px-4 py-0.5 border-[1px] border-slate-300 rounded-sm sm:px-10 sm:py-2 text-xl hover:bg-gradient-to-r from-[#15EFFB] via-[#5191FA] to-[#5191FA] hover:animate-pulse"
           onClick={() => signOut().catch(console.log)}
           >
             Logout
@@ -39,7 +42,7 @@ const { data: session, status } = useSession<boolean>();
             <div>
               <button
               type="button"
-              className="mx-auto block rounded-md bg-neutral-800 py-3 px-6 text-center hover:bg-neutral-700"
+              className="bg-transparent text-white px-4 py-0.5 border-[1px] border-slate-300 rounded-sm sm:px-10 sm:py-2 text-xl hover:bg-gradient-to-r from-[#15EFFB] via-[#5191FA] to-[#5191FA] hover:animate-pulse"
               onClick={() => signIn().catch(console.log)}
               >
                 Login
