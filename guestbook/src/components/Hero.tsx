@@ -3,7 +3,7 @@ import heroImage from "../../public/Hero.png";
 
 const Hero = () => {
   return (
-    <section className="px-2 py-24 bg-[#0B1025] text-white">
+    <section className="px-2 py-24 bg-[#000] text-white">
       <div className="md:flex items-center justify-around ">
         <div className=" md:w-3/5 px-4">
           <h2 className="font-extrabold text-4xl text-skin-base my-4 leading-tight lg:text-7xl tracking-tighter mb-6 
