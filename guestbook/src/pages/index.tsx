@@ -29,7 +29,7 @@ const Home = () => {
      <main className="">
           <Navbar />
           <Hero />
-          {/* <CreateMessageForm /> */}
+          <CreateMessageForm />
           <GuestbookEntries />
           <Footer />
      </main>

@@ -32,7 +32,7 @@ const { data: session, status } = useSession<boolean>();
           <button
           type="button"
           className="bg-transparent text-white px-4 py-0.5 border-[1px] border-slate-300 rounded-sm sm:px-10 sm:py-2 text-xl hover:bg-gradient-to-r from-[#15EFFB] via-[#5191FA] to-[#5191FA] hover:animate-pulse"
-          onClick={() => signOut().catch(console.log)}
+          onClick={() => signOut()}
           >
             Logout
           </button>
@@ -43,7 +43,7 @@ const { data: session, status } = useSession<boolean>();
               <button
               type="button"
               className="bg-transparent text-white px-4 py-0.5 border-[1px] border-slate-300 rounded-sm sm:px-10 sm:py-2 text-xl hover:bg-gradient-to-r from-[#15EFFB] via-[#5191FA] to-[#5191FA] hover:animate-pulse"
-              onClick={() => signIn().catch(console.log)}
+              onClick={() => signIn()}
               >
                 Login
               </button>

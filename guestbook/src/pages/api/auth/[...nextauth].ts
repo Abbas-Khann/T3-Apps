@@ -8,7 +8,7 @@ import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db";
 
 export const authOptions: NextAuthOptions = {
-
+  debug: true,
   // Include user.id on session
   callbacks: {
     session({ session, user }) {
@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
