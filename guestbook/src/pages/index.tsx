@@ -3,6 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import GuestbookEntries from "../components/GuestbookQueries";
 import CreateMessageForm from "../components/CreateMessage";
 import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
 
 const Home = () => {
 
@@ -26,7 +27,8 @@ const Home = () => {
    return(
      <main className="">
           <Navbar />
-          <CreateMessageForm />
+          <Hero />
+          {/* <CreateMessageForm /> */}
           <GuestbookEntries />
      </main>
    )
