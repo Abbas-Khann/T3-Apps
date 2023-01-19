@@ -4,6 +4,7 @@ import GuestbookEntries from "../components/GuestbookQueries";
 import CreateMessageForm from "../components/CreateMessage";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import Footer from "../components/Footer";
 
 const Home = () => {
 
@@ -30,6 +31,7 @@ const Home = () => {
           <Hero />
           {/* <CreateMessageForm /> */}
           <GuestbookEntries />
+          <Footer />
      </main>
    )
 }
