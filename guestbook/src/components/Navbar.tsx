@@ -1,11 +1,8 @@
-import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import GuestbookEntries from "../components/GuestbookQueries";
-import CreateMessageForm from "../components/CreateMessage";
 
-const Home = () => {
+const Navbar = () => {
 
-  const { data: session, status } = useSession<boolean>();
+const { data: session, status } = useSession<boolean>();
 
   if(status === "loading") {
     return(
@@ -22,10 +19,8 @@ const Home = () => {
     console.log("UNAUTHENTICATED!!!")
   }
 
-   return(
-     <main className="flex flex-col items-center">
-       <h1 className="text-3xl pt-4">Guestbook</h1>
-       <div className="pt-10">
+  return(
+    <nav className="absolute top-[0px] left-[0px] bg-gray-300 w-[1440px] h-[92px]">
         {session ? (
           <>
           <p className="mb-4 text-center"
@@ -51,11 +46,8 @@ const Home = () => {
               </button>
             </div>
           )}
-          <CreateMessageForm />
-          <GuestbookEntries />
-          </div> 
-     </main>
-   )
+    </nav>
+  )
 }
 
-export default Home
+export default Navbar
