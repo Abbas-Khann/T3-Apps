@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import GuestbookEntries from "../components/GuestbookQueries";
 import CreateMessageForm from "../components/CreateMessage";
 import Navbar from "../components/Navbar";

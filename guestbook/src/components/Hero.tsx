@@ -4,36 +4,36 @@ import React, { useEffect, useRef } from "react";
 import { gsap, Power4 } from "gsap";
 
 const Hero = () => {
-  let animation = useRef(null)
-  let tl = gsap.timeline({ repeat: -1 });
+  // let animation = useRef(null)
+  // let tl = gsap.timeline({ repeat: -1 });
   
-  useEffect(() => {
+  // useEffect(() => {
   
-    tl.to(".animation", {
-      width: "120vw",
-      duration: 1,
-      ease: Power4.easeOut,
-      delay: 2,
+  //   tl.to(".animation", {
+  //     width: "120vw",
+  //     duration: 1,
+  //     ease: Power4.easeOut,
+  //     delay: 2,
       
-    })
-      .to(".animation", {
-        duration: 1,
-        transform: "translateX(40%)",
-        width: "120vw",
-        ease: Power4.easeOut,
+  //   })
+  //     .to(".animation", {
+  //       duration: 1,
+  //       transform: "translateX(40%)",
+  //       width: "120vw",
+  //       ease: Power4.easeOut,
         
-      })
-      .to(".animation", {
-        duration: 1,
-        transform: "translateX(-100px)",
-        width: "60vw",
-        ease: Power4.easeOut,
+  //     })
+  //     .to(".animation", {
+  //       duration: 1,
+  //       transform: "translateX(-100px)",
+  //       width: "60vw",
+  //       ease: Power4.easeOut,
         
-      });
+  //     });
       
-  }, []);
+  // }, []);
   return (
-    <section className="px-2 py-24 bg-[#000] text-white overflow-hidden z-[-10]">
+    <section className="px-2 py-36 bg-[#000] text-white overflow-hidden">
       {/* <div className="h-[150px] w-[60vw] bg-[#0B1025] rounded-full transform translate-x-[-100px]  animation "></div> */}
       <div className="md:flex items-center justify-around ">
         <div className=" md:w-3/5 px-4 relative">
