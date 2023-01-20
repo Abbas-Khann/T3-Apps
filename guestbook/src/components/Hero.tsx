@@ -1,7 +1,6 @@
 import Image from "next/image";
 import heroImage from "../../public/Hero.png";
-import React, { useEffect, useRef } from "react";
-import { gsap, Power4 } from "gsap";
+import React from "react";
 
 const Hero = () => {
   // let animation = useRef(null)
