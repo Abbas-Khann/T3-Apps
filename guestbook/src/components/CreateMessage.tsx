@@ -36,33 +36,6 @@ const CreateMessageForm = () => {
     if(status !== "authenticated") return null
 
     return(
-        // <form
-        // className=""
-        // onSubmit={(event) => {
-        //     event.preventDefault();
-        //     postMessage.mutate({
-        //         name: session.user?.name as string,
-        //         message,
-        //     })
-        //     setMessage("");
-        // }}
-        // >
-        //     <input 
-        //     type="text"
-        //     className=""
-        //     placeholder="Your Message..."
-        //     minLength={2}
-        //     maxLength={150}
-        //     value={message}
-        //     onChange={(event) => setMessage(event.target.value)}
-        //     />
-        //     <button
-        //     type="submit"
-        //     className=""
-        //     >
-        //     Submit
-        //     </button>
-        // </form>
         <Box
         display={"flex"}
         alignItems="center"
