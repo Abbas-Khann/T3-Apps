@@ -71,6 +71,7 @@ const CreateMessageForm = () => {
         >
         <Button
         bgGradient='linear(to-r,#15EFFB ,#5191FA , #5191FA)'
+        color={"white"}
         paddingX={10}
         paddingY={7}
         fontSize={25}

@@ -26,7 +26,7 @@ const { data: session, status } = useSession<boolean>();
       <Image width={170} height={50} src={logo} alt="logo" />
         {session ? (
           <>
-          <p className="mb-4 text-center"
+          <p className="mb-4 text-center text-white text-lg"
           >Hi {session.user?.name}
           </p>
           <button
