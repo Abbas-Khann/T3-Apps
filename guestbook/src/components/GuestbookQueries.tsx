@@ -1,15 +1,30 @@
 import { api } from "../utils/api";
+import { TypeAnimation } from "react-type-animation";
 
 const GuestbookEntries = () => {
     const { data: guestbookEntries, isLoading } = api.guestBook.getAll.useQuery();
 
-    if(isLoading) {
-        return(
-            <div>
-                Fetching Messages
-            </div>
-        )
-    }
+    if (isLoading === true) {
+        return (
+          <div className="mt-10 text-center font-mono text-xl font-semibold tracking-widest text-white subpixel-antialiased">
+            <TypeAnimation
+              sequence={[
+                "Fetching Messages",
+                62,
+                "Fetching Messages.",
+                125,
+                "Fetching Messages..",
+                250,
+                "Fetching Messages...",
+                500,
+              ]}
+              wrapper="div"
+              cursor={false}
+              repeat={Infinity}
+            />
+          </div>
+        );
+      }
 
     return(
         <div
