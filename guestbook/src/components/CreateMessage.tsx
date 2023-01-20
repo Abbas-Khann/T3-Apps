@@ -1,9 +1,18 @@
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { api } from "../utils/api";
-import { GiCancel } from "react-icons/gi";
+import { ModalOverlay, useDisclosure, Button, Modal, ModalContent, ModalBody, ModalHeader, ModalFooter ,ModalCloseButton, Input, FormControl } from "@chakra-ui/react";
 
 const CreateMessageForm = () => {
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg='blackAlpha.300'
+      backdropFilter='blur(10px) hue-rotate(90deg)'
+    />
+  )
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [overlay, setOverlay] = React.useState(<OverlayOne />)
     const [message, setMessage] = useState("");
     const {data: session, status} = useSession();
     const utils = api.useContext()
@@ -54,46 +63,72 @@ const CreateMessageForm = () => {
         //     Submit
         //     </button>
         // </form>
-        <form className="modal modal-bottom sm:modal-middle"
+        <FormControl
+        display={"flex"}
+        alignItems="center"
+        justifyContent={"center"}
+        bgColor="black"
         onSubmit={(event) => {
-                event.preventDefault();
-                postMessage.mutate({
-                    name: session.user?.name as string,
-                    message,
-                })
-                setMessage("");
-            }}
+              event.preventDefault();
+              postMessage.mutate({
+                  name: session.user?.name as string,
+                  message,
+              })
+              setMessage("");
+          }}
         >
-        <div className="modal-box relative">
-          <label
-            htmlFor="add-message-modal"
-            className="btn btn-circle btn-sm absolute right-2 top-2"
-          >
-            <GiCancel />
-          </label>
-          <h3 className="pb-8 text-center text-2xl font-bold tracking-wider text-white subpixel-antialiased">
-            Add New Message
-          </h3>
-          <div className="grid grid-cols-1 items-center justify-center">
-            <input
+        <Button
+        bgGradient='linear(to-r,#15EFFB ,#5191FA , #5191FA)'
+        paddingX={10}
+        paddingY={7}
+        fontSize={25}
+        marginBottom={5}
+        _hover={{
+          bgGradient: 'linear(to-l ,#15EFFB ,#5191FA , #5191FA)',
+        }}
+          onClick={() => {
+            setOverlay(<OverlayOne />)
+            onOpen()
+          }}
+        >
+          Add Message
+        </Button>
+        <Modal
+        isCentered isOpen={isOpen} onClose={onClose}
+        >
+          {overlay}
+          <ModalContent>
+            <ModalHeader
+            fontSize={20}
+            textColor={"white"}
+            >Add Message Here</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Input 
+              fontSize={25}
+              bgGradient='linear(to-r,#15EFFB ,#5191FA , #5191FA)'
+              rounded={"md"}
+              paddingX={5}
+              color={"black"}
               type="text"
-              placeholder="Start typing..."
-              minLength={3}
-              maxLength={100}
-              className="input input-primary"
-              value={message}
-              onChange={(event) => setMessage(event.target.value)}
-            //   onChange={(event) => handleOnChange(event)}
-            />
-            <button
+                  className=""
+                  placeholder="Your Message..."
+                  minLength={2}
+                  maxLength={150}
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+              />
+            </ModalBody>
+            <Button
             type="submit"
-              className="btn mt-5 bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 text-lg tracking-widest text-white subpixel-antialiased"
+            w={"20"}
+            marginY={2}
             >
               Submit
-            </button>
-          </div>
-        </div>
-      </form>
+            </Button>
+          </ModalContent>
+        </Modal>
+      </FormControl>
     )
 }
 
