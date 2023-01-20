@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { api } from "../utils/api";
-import { ModalOverlay, useDisclosure, Button, Modal, ModalContent, ModalBody, ModalHeader, ModalFooter ,ModalCloseButton, Input, FormControl } from "@chakra-ui/react";
+import { ModalOverlay, useDisclosure, Button, Modal, ModalContent, ModalBody, ModalHeader, ModalFooter ,ModalCloseButton, Input, FormControl, Box } from "@chakra-ui/react";
 
 const CreateMessageForm = () => {
   const OverlayOne = () => (
@@ -63,19 +63,11 @@ const CreateMessageForm = () => {
         //     Submit
         //     </button>
         // </form>
-        <FormControl
+        <Box
         display={"flex"}
         alignItems="center"
         justifyContent={"center"}
         bgColor="black"
-        onSubmit={(event) => {
-              event.preventDefault();
-              postMessage.mutate({
-                  name: session.user?.name as string,
-                  message,
-              })
-              setMessage("");
-          }}
         >
         <Button
         bgGradient='linear(to-r,#15EFFB ,#5191FA , #5191FA)'
@@ -111,24 +103,30 @@ const CreateMessageForm = () => {
               paddingX={5}
               color={"black"}
               type="text"
-                  className=""
-                  placeholder="Your Message..."
-                  minLength={2}
-                  maxLength={150}
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
+                    placeholder="Your Message..."
+                    minLength={2}
+                    maxLength={150}
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
               />
             </ModalBody>
             <Button
-            type="submit"
             w={"20"}
             marginY={2}
+            onClick={(event) => {
+                  event.preventDefault();
+                  postMessage.mutate({
+                      name: session.user?.name as string,
+                      message,
+                  })
+                  setMessage("");
+              }}
             >
               Submit
             </Button>
           </ModalContent>
         </Modal>
-      </FormControl>
+      </Box>
     )
 }
 
