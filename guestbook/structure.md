@@ -29,5 +29,29 @@ Also added the types of the schema as well as the names and pushed all changes u
 
 ## Writing a post request with TRPC
 
+Next 
+```jsx
+// query to make a post request and add the input of name, message in an object format with the 
 
+    postMessage: protectedProcedure
+    .input(
+        z.object({
+            name: z.string(),
+            message: z.string()
+        })
+    )
+    .mutation( async ({ ctx, input }) => {
+        try {
+            await ctx.prisma.guestbook.create({
+                data: {
+                    name: input.name,
+                    message: input.message
+                }
+            })
+        } 
+        catch (err) {
+            console.log("Error", err)
+        }
+    })
+ ```   
 
