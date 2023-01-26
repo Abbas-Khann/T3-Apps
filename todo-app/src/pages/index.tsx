@@ -6,8 +6,6 @@ import GetTasks from "../components/GetTasks";
 import { Box } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
     <Navbar />

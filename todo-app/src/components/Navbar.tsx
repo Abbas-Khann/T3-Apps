@@ -21,10 +21,10 @@ import { api } from '../utils/api';
 export default function Navbar(): JSX.Element {
   const { data: sessionData } = useSession();
     
-    const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-        undefined,
-        { enabled: sessionData?.user === undefined } ,
-    );
+    // const { data: secretMessage } = api.example.getSecretMessage.useQuery(
+    //     undefined,
+    //     { enabled: sessionData?.user === undefined } ,
+    // );
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -39,7 +39,7 @@ export default function Navbar(): JSX.Element {
                 {/* { sessionData &&  } */}
                 { !sessionData ? 
                 <Button
-                onClick={() => signIn()}
+                onClick={() => {signIn().catch(console.log)}}
                 >Sign in
                 </Button> 
                 :  
@@ -66,14 +66,14 @@ export default function Navbar(): JSX.Element {
                   <br />
                   <Center>
                     {sessionData && <p>Logged in as {sessionData.user?.name}</p>}
-                    {secretMessage && <p>{secretMessage}</p>}
+                    {/* {secretMessage && <p>{secretMessage}</p>} */}
                   </Center>
                   <br />
                   <MenuDivider />
                   {/* <MenuItem>Your Servers</MenuItem>
                   <MenuItem>Account Settings</MenuItem> */}
                   <MenuItem
-                  onClick={() => signOut()}
+                  onClick={() => {signOut().catch(console.log)}}
                   >Logout</MenuItem>
                 </MenuList>
               </Menu>

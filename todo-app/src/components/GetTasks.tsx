@@ -1,8 +1,12 @@
 import React from "react";
 import { background, Box, Flex, Text } from "@chakra-ui/react";
 import { DeleteIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
+import { api } from "../utils/api";
+
 
 const GetTasks = (): JSX.Element => {
+    const { data: todoEntries, isLoading } = api.todoRouter.getAll.useQuery();
+    console.log(todoEntries)
     return(
         <Box
         display={"flex"}
