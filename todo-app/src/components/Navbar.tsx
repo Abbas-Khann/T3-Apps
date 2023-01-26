@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import logo from "../../public/logo.png";
+import Image from 'next/image';
 import {
   Box,
   Flex,
   Avatar,
-  Link,
   Button,
   Menu,
   MenuButton,
@@ -13,40 +13,36 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  useColorMode,
   Center,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { api } from '../utils/api';
 
-// const NavLink = ({ children }: { children: ReactNode }) => (
-//   <Link
-//     px={2}
-//     py={1}
-//     rounded={'md'}
-//     _hover={{
-//       textDecoration: 'none',
-//       bg: useColorModeValue('gray.200', 'gray.700'),
-//     }}
-//     href={'#'}>
-//     {children}
-//   </Link>
-// );
-
-export default function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function Navbar(): JSX.Element {
+  const { data: sessionData } = useSession();
+    
+    const { data: secretMessage } = api.example.getSecretMessage.useQuery(
+        undefined,
+        { enabled: sessionData?.user === undefined } ,
+    );
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Logo</Box>
-
+          <Image width={180} height={180} src={logo} alt="logo" />
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              <Button onClick={toggleColorMode}>
+              {/* <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
+              </Button> */}
                 {/* setup the authentication here  */}
+                {/* { sessionData &&  } */}
+                { !sessionData ? 
+                <Button
+                onClick={() => signIn()}
+                >Sign in
+                </Button> 
+                :  
               <Menu>
                 <MenuButton
                   as={Button}
@@ -57,7 +53,7 @@ export default function Navbar() {
                   <Avatar
                     size={'sm'}
                     src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
+                    />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
                   <br />
@@ -65,19 +61,23 @@ export default function Navbar() {
                     <Avatar
                       size={'2xl'}
                       src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
+                      />
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    {sessionData && <p>Logged in as {sessionData.user?.name}</p>}
+                    {secretMessage && <p>{secretMessage}</p>}
                   </Center>
                   <br />
                   <MenuDivider />
                   {/* <MenuItem>Your Servers</MenuItem>
                   <MenuItem>Account Settings</MenuItem> */}
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem
+                  onClick={() => signOut()}
+                  >Logout</MenuItem>
                 </MenuList>
               </Menu>
+                }
             </Stack>
           </Flex>
         </Flex>
