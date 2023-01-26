@@ -29,7 +29,7 @@ Also added the types of the schema as well as the names and pushed all changes u
 
 ## Writing a post request with TRPC
 
-Next 
+Next we will create a post request and add the input(name, message)
 ```jsx
 // query to make a post request and add the input of name, message in an object format with the 
 
@@ -53,5 +53,7 @@ Next
             console.log("Error", err)
         }
     })
- ```   
+ ```
+
+ ## Writing 
 
