@@ -6,31 +6,54 @@ import { api } from "../utils/api";
 
 const GetTasks = (): JSX.Element => {
     const { data: todoEntries, isLoading } = api.todoRouter.getAll.useQuery();
-    console.log(todoEntries)
+    console.log(todoEntries);
+
+    if(isLoading) {
+        return(
+            <p>Hold the Fuck up Buddy!</p>
+        )
+    }
+
     return(
         <Box
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
+        flexDir={"column"}
         h={"16"}
-        marginTop={5}
+        marginTop={24}
         >
-        <Flex
-        bgColor={"#319795"}
-        justifyContent={"space-between"}
-        w={["90%", "70%", "55%"]}
-        padding={"20px"}
-        rounded="xl"
-        >
+            {todoEntries && todoEntries?.map((entry, idx) => {
+            return(
+            <Flex
+            bgColor={"#319795"}
+            justifyContent={"space-between"}
+            w={["90%", "70%", "55%"]}
+            padding={"20px"}
+            rounded="xl"
+            marginBottom={"15px"}
+            >
+            <Flex
+            flexDir={"column"}
+            >
             <Text
             fontSize={"xl"}
-            >Work on a stupid project as usual Abbassss</Text>
-            <Flex>
+            >{entry.text}</Text>
+            <Text
+            fontSize={"sm"}
+            >{entry.name}</Text>
+            </Flex>
+            <Flex
+            alignItems={"center"}
+            justifyContent="center"
+            >
             <DeleteIcon boxSize={6} focusable={true} cursor="pointer" />
             <CheckIcon boxSize={6} focusable={true} cursor="pointer" marginX={5} />
             <EditIcon boxSize={6} focusable={true} cursor="pointer" />
             </Flex>
         </Flex>
+            )
+            })}
         </Box>
     )
 }
