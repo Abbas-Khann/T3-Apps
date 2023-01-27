@@ -2,11 +2,15 @@ import React from "react";
 import { background, Box, Flex, Text } from "@chakra-ui/react";
 import { DeleteIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
 import { api } from "../utils/api";
+import { useSession } from "next-auth/react";
 
 
 const GetTasks = (): JSX.Element => {
     const { data: todoEntries, isLoading } = api.todoRouter.getAll.useQuery();
-    console.log(todoEntries);
+    const deleteTodo = api.todoRouter.deleteTask.useMutation();
+    const { data: session, status } = useSession();
+    console.log(deleteTodo)
+    console.log(todoEntries)
 
     if(isLoading) {
         return(
@@ -48,11 +52,27 @@ const GetTasks = (): JSX.Element => {
             alignItems={"center"}
             justifyContent="center"
             >
-            <DeleteIcon boxSize={6} focusable={true} cursor="pointer" />
-            <CheckIcon boxSize={6} focusable={true} cursor="pointer" marginX={5} />
-            <EditIcon boxSize={6} focusable={true} cursor="pointer" />
+            <DeleteIcon
+            onClick={() => deleteTodo.mutate({
+                id: entry.id
+            })}
+            boxSize={6} 
+            focusable={true} 
+            cursor="pointer"  
+            />
+            <CheckIcon 
+            boxSize={6} 
+            focusable={true} 
+            cursor="pointer" 
+            marginX={5} 
+            />
+            <EditIcon 
+            boxSize={6} 
+            focusable={true} 
+            cursor="pointer" 
+            />
             </Flex>
-        </Flex>
+            </Flex>
             )
             })}
         </Box>

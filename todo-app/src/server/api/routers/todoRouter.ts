@@ -11,7 +11,8 @@ export const todoRouter = createTRPCRouter({
                 select: {
                     name: true,
                     text: true,
-                    createdAt: true
+                    createdAt: true,
+                    id: true
                 },
                 orderBy: {
                     createdAt: "desc"
@@ -44,6 +45,26 @@ export const todoRouter = createTRPCRouter({
         } 
         catch (err) {
             console.log("Error", err)
+        }
+    }),
+
+    deleteTask: publicProcedure
+    .input(
+        z.object({
+            id: z.string()
+        })
+    )
+    .mutation( async({ ctx, input }) => {
+        try {
+            await ctx.prisma.todo.delete({
+                where: {
+                    id: input.id
+                }
+            })
+            return `Successfully deleted todo at id ${input.id}`
+        }
+        catch (err) {
+            console.log(err)    
         }
     })
 })
