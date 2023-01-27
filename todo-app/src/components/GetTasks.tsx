@@ -26,6 +26,7 @@ const GetTasks = (): JSX.Element => {
             {todoEntries && todoEntries?.map((entry, idx) => {
             return(
             <Flex
+            key={idx}
             bgColor={"#319795"}
             justifyContent={"space-between"}
             w={["90%", "70%", "55%"]}

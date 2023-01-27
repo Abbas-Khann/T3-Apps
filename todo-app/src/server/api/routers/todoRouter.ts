@@ -23,8 +23,7 @@ export const todoRouter = createTRPCRouter({
             console.log("Error", err)
         }
     }),
-
-    // post message to add a new todo
+    
     postMessage: protectedProcedure
     .input(
         z.object({
@@ -33,7 +32,7 @@ export const todoRouter = createTRPCRouter({
             createdAt: z.date()
         })
     )
-    .mutation( async ({ ctx, input }) => {
+    .mutation( async({ ctx, input }) => {
         try {
             await ctx.prisma.todo.create({
                 data: {
@@ -42,9 +41,9 @@ export const todoRouter = createTRPCRouter({
                     createdAt: input.createdAt
                 }
             })
-        }
+        } 
         catch (err) {
-           console.log("Error", err)    
+            console.log("Error", err)
         }
     })
 })
