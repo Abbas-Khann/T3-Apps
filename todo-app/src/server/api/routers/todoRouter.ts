@@ -12,7 +12,8 @@ export const todoRouter = createTRPCRouter({
                     name: true,
                     text: true,
                     createdAt: true,
-                    id: true
+                    id: true,
+                    status: true
                 },
                 orderBy: {
                     createdAt: "desc"
@@ -48,7 +49,7 @@ export const todoRouter = createTRPCRouter({
         }
     }),
 
-    deleteTask: publicProcedure
+    deleteTask: protectedProcedure
     .input(
         z.object({
             id: z.string()
@@ -65,6 +66,29 @@ export const todoRouter = createTRPCRouter({
         }
         catch (err) {
             console.log(err)    
+        }
+    }),
+
+    completeTask: publicProcedure
+    .input(
+        z.object({
+            id: z.string(),
+            status: z.boolean()
+        })
+    )
+    .mutation( async({ ctx, input }) => {
+        try {
+            await ctx.prisma.todo.update({
+                where: {
+                    id: input.id,
+                },
+                data: {
+                    status: input.status
+                }
+            })
+        } 
+        catch (err) {
+            console.log("Error", err)    
         }
     })
 })

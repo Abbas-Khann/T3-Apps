@@ -70,4 +70,5 @@ model Todo {
     createdAt DateTime
     name String
     text String @db.VarChar(100)
+    status Boolean @default(false)
 }

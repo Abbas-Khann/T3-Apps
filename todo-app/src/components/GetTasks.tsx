@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 const GetTasks = (): JSX.Element => {
     const { data: todoEntries, isLoading } = api.todoRouter.getAll.useQuery();
     const deleteTodo = api.todoRouter.deleteTask.useMutation();
+    const setTodoAsCompleted = api.todoRouter.completeTask.useMutation();
     const { data: session, status } = useSession();
     console.log(deleteTodo)
     console.log(todoEntries)
@@ -46,7 +47,9 @@ const GetTasks = (): JSX.Element => {
             >{entry.text}</Text>
             <Text
             fontSize={"sm"}
-            >{entry.name}</Text>
+            >{entry.name} - {" "}  
+            {entry.status.toString() === "false" ? "Yet to complete" : "Completed!!!"}
+            </Text>
             </Flex>
             <Flex
             alignItems={"center"}
@@ -61,6 +64,10 @@ const GetTasks = (): JSX.Element => {
             cursor="pointer"  
             />
             <CheckIcon 
+            onClick={() => setTodoAsCompleted.mutate({
+                id: entry.id,
+                status: true
+            })}
             boxSize={6} 
             focusable={true} 
             cursor="pointer" 
